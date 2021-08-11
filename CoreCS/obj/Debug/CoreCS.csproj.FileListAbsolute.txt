@@ -1,0 +1,4 @@
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\CoreCS\bin\Debug\CoreCS.dll
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\CoreCS\bin\Debug\CoreCS.pdb
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\CoreCS\obj\Debug\CoreCS.dll
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\CoreCS\obj\Debug\CoreCS.pdb

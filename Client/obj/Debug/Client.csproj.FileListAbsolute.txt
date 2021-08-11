@@ -1,0 +1,17 @@
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\Client\bin\Debug\Client.exe.config
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\Client\bin\Debug\Client.exe
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\Client\bin\Debug\Client.pdb
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\Client\bin\Debug\CoreCS.dll
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\Client\bin\Debug\CoreCS.pdb
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\Client\obj\Debug\Client.exe
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\Client\obj\Debug\Client.pdb
+C:\Users\twobomb\source\repos\ClientServer\Client\bin\Debug\Client.exe.config
+C:\Users\twobomb\source\repos\ClientServer\Client\bin\Debug\Client.exe
+C:\Users\twobomb\source\repos\ClientServer\Client\bin\Debug\Client.pdb
+C:\Users\twobomb\source\repos\ClientServer\Client\bin\Debug\CoreCS.dll
+C:\Users\twobomb\source\repos\ClientServer\Client\bin\Debug\CoreCS.pdb
+C:\Users\twobomb\source\repos\ClientServer\Client\obj\Debug\Client.csprojAssemblyReference.cache
+C:\Users\twobomb\source\repos\ClientServer\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\twobomb\source\repos\ClientServer\Client\obj\Debug\Client.exe
+C:\Users\twobomb\source\repos\ClientServer\Client\obj\Debug\Client.pdb

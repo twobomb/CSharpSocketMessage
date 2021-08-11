@@ -1,0 +1,1 @@
+c:\users\user.hmarenko\documents\visual studio 2013\Projects\ClientServer\ClientServer\bin\Debug\ClientServer.exe.config
