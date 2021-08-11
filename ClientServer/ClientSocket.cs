@@ -21,13 +21,19 @@ namespace Server{
             this.socket = s;
             socket.BeginReceive(this.buffer, 0, ClientSocket.BufferSize, 0, new AsyncCallback(ReceiveCallback), this);
         }
+
+        private void RecieveMessage(Message msg) {//Вызывается когда получили запрос от клиента
+            Console.WriteLine("Recieve: {0} {1} {2}", msg.id, msg.title, msg.message);//выводим на экран
+            msg.title = "ответ";
+            msg.message = "hi";
+            this.SendMessage(msg);//отправим ответ клиенту
+        }
         private static void ReceiveCallback(IAsyncResult ar){
             ClientSocket state = (ClientSocket)ar.AsyncState;
             Socket client = state.socket;
             int bytesRead = 0;
             try{
                 bytesRead = client.EndReceive(ar);//количество байт записанных в буффер
-
             }
             catch (SocketException se){
                 if (se.ErrorCode == 10054){
@@ -52,11 +58,8 @@ namespace Server{
                         byte[] dataMessage = new byte[sizeContent];//Создаем буффер для сообщения
                         state.recieveData.Seek(4, SeekOrigin.Begin);//Ставим указатель в потоке на начало нашего сообщения ( 1байт после заголовка)
                         state.recieveData.Read(dataMessage, 0, sizeContent);//Пишем наше сообщение в буфер
-                        using (MemoryStream msTemp = new MemoryStream(dataMessage)) {//Создаем временный поток и пишем в  него сообщения для десереализации
-                            Message msg = (Message)formatter.Deserialize(msTemp);//десереализируем сообщений
-                            Console.WriteLine("Recieve: {0} {1} {2}", msg.id, msg.title, msg.message);//выводим на экран
-                        }
-
+                        using (MemoryStream msTemp = new MemoryStream(dataMessage)) //Создаем временный поток и пишем в  него сообщения для десереализации
+                            state.RecieveMessage((Message)formatter.Deserialize(msTemp));//десереализируем сообщения и передаем методу recievemesssage
                         //Далее на нужно удалить из потока наш заголовок + данные
                         if (state.recieveData.Length - sizeContent - 4 > 0) {//Если у нас в потоке еще остались данные кроме тех что мы прочитали
                             byte[] dataOther = new byte[state.recieveData.Length - sizeContent - 4];//Создаем буффер для оставшихся
@@ -78,6 +81,24 @@ namespace Server{
 
             client.BeginReceive(state.buffer, 0, ClientSocket.BufferSize, 0,
                 new AsyncCallback(ReceiveCallback), state);//ждем еще данные
+        }
+
+        public void SendMessage(Message msg) {//Послать сообщение клиенту
+            using (MemoryStream ms = new MemoryStream()) {
+                ms.WriteByte(0);
+                ms.WriteByte(0);
+                ms.WriteByte(0);
+                ms.WriteByte(0);
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(ms, msg);
+                ms.Seek(0, SeekOrigin.Begin);
+                ms.Write(BitConverter.GetBytes(ms.Length-4),0,4);
+                ms.Seek(0, SeekOrigin.End);
+                socket.BeginSend(ms.GetBuffer(), 0, (int) ms.Length, 0, ar => {
+                    (ar.AsyncState as ClientSocket).socket.EndSend(ar);
+                    Console.WriteLine("Сообщение отправлено клиенту");
+                }, this);
+            }
         }
         ~ClientSocket()
         {
