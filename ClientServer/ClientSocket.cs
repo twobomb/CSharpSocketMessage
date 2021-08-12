@@ -94,7 +94,7 @@ namespace Server{
                 ms.Seek(0, SeekOrigin.Begin);
                 ms.Write(BitConverter.GetBytes(ms.Length-4),0,4);
                 ms.Seek(0, SeekOrigin.End);
-                socket.BeginSend(ms.GetBuffer(), 0, (int) ms.Length, 0, ar => {
+                socket.BeginSend(ms.ToArray(), 0, (int) ms.Length, 0, ar => {
                     (ar.AsyncState as ClientSocket).socket.EndSend(ar);
                     Console.WriteLine("Сообщение отправлено клиенту");
                 }, this);
