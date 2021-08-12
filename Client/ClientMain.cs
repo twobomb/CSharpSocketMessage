@@ -49,7 +49,7 @@ namespace Client
                 ms.Seek(0, SeekOrigin.Begin);
                 ms.Write(BitConverter.GetBytes(ms.Length - 4), 0, 4);
                 ms.Seek(0, SeekOrigin.End);
-                ClientMain.client.Client.BeginSend(ms.GetBuffer(), 0, (int)ms.Length, 0, ar => {
+                ClientMain.client.Client.BeginSend(ms.ToArray(), 0, (int)ms.Length, 0, ar => {
                     ClientMain.client.Client.EndSend(ar);
                     Console.WriteLine("Сообщение отправлено серверу");
                 }, null);
